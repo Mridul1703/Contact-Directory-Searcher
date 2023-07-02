@@ -33,7 +33,7 @@ function App() {
         class="peer h-full w-full outline-none text-sm text-gray-700 pr-2"
         type="text"
         id="search"
-        placeholder="Search Contacts.." /> 
+        placeholder="Search Contacts..." /> 
     </div>
   </div>
 
