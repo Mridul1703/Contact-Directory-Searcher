@@ -8,7 +8,6 @@ function App() {
 
     function handleChange(e) {
       setSearch(e.target.value);
-      console.log(e.target.value);
     }
 
   return (
