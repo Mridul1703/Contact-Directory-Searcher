@@ -1,13 +1,15 @@
 import './App.css';
 import JsonData from './components/Data.json';
+import { useState } from 'react';
 
 function App() {
 
-    const d = JsonData.map((items) => {
-      return(
-        <li>{items.first_name}</li>
-      )
-    });
+    const [Search, setSearch] = useState('');
+
+    function handleChange(e) {
+      setSearch(e.target.value);
+      console.log(e.target.value);
+    }
 
   return (
     <>
@@ -30,6 +32,7 @@ function App() {
             </svg>
         </div>
         <input
+        onChange={handleChange}
         class="peer h-full w-full outline-none text-sm text-gray-700 pr-2"
         type="text"
         id="search"
@@ -56,7 +59,14 @@ function App() {
           </thead>
           <tbody>
 
-        {JsonData.map((items) => {
+        {JsonData.filter((items) => {
+          return items.first_name.toLowerCase().includes(Search)
+          || items.last_name.toLowerCase().includes(Search)
+          || items.email.toLowerCase().includes(Search)
+          || items.gender.toLowerCase().includes(Search)
+          || items.address.toLowerCase().includes(Search)
+        }
+        ).map((items) => {
           return (
           <tr>
               <td class="whitespace-nowrap px-6 py-4 text-xl">{items.first_name}</td>
@@ -66,7 +76,6 @@ function App() {
               <td class="whitespace-nowrap px-6 py-4 text-xl">{items.address}</td>
             </tr>
           )})}
-
           </tbody>
         </table>
       </div>
